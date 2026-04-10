@@ -1,1 +1,0 @@
-with open('explanation.txt','w') as f: f.write('hello artifact'); print('done')
