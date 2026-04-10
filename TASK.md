@@ -1,4 +1,4 @@
-# Platform Dev Technical Interview Task
+# Platform Dev Task
 
 ## Core Task
 
@@ -32,7 +32,7 @@ Compare and evaluate approaches from:
 - OpenWebUI documentation: https://docs.openwebui.com
 - Our production environment runs on Hetzner dedicated servers (bare metal, no managed K8s)
 - **Hardware constraints:** assume a single server with 8 vCPU, 32 GB RAM, where ~30% is already consumed by the OpenWebUI — your sandbox resource limits should account for the remaining capacity
-- LLM API key (provided over another channel)
+
 
 ## Bonus Task
 
