@@ -19,7 +19,7 @@ before this trying to run locally and then jumping into docker isolation make it
 
 Decision 5: Execution Endpoint Decision
 
-First i am trying to implemented a basic /execute endpoint that runs user Python code using subprocess and thee code is written to a temporary .py file, executed and the output stdout, stderr, exit code is returned.
+First i am trying to implemented a basic /execute endpoint that runs user Python code using subprocess and the code is written to a temporary .py file, executed and the output stdout, stderr, exit code is returned.
 
 and later i will be replace with a Docker based sandbox for proper isolation.
 

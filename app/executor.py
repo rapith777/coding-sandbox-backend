@@ -1,10 +1,8 @@
 import docker
 import os
 
-client = docker.from_env()
-
-
 def run_code_in_docker(file_path, session_id):
+    client = docker.from_env()
     session_folder = os.path.abspath(os.path.join("data", "sessions", session_id))
     session_folder = session_folder.replace("\\", "/")
 
