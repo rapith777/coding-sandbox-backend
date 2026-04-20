@@ -35,7 +35,7 @@ def execute_code_service(data: ExecuteRequest):
         session_folder.mkdir(parents=True, exist_ok=True)
 
         # Define the file path to store the user's code (save it as 'user_code.py')
-        file_path = session_folder / "user_code.py"
+        file_path = session_folder / f"{execution_id}_usercode.py"
 
         # Write the user's code into the file
         with open(file_path, "w", encoding="utf-8") as f:
