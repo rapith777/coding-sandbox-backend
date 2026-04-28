@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Execution UI</title>
+</head>
+<body>
+
+    <h2>VERSION 4 - FINAL FIX</h2>
+
+    <h1>Run Python Code</h1>
+
+    <!-- Session ID -->
+    <input 
+        type="text" 
+        id="sessionId" 
+        placeholder="Enter session ID"
+        style="width: 400px;"
+    />
+
+    <br><br>
+
+    <!-- Code Input -->
+    <textarea 
+        id="codeInput" 
+        placeholder="Write Python code here..."
+        rows="10" 
+        cols="70"
+    ></textarea>
+
+    <br><br>
+
+    <!-- Button -->
+    <button type="button" onclick="executeCode(event)">Run Code</button>
+
+    <h3>Output</h3>
+
+    <!-- Output Box -->
+    <pre id="result" style="
+        background-color: #f4f4f4;
+        border: 1px solid #ccc;
+        padding: 12px;
+        min-height: 150px;
+        width: 750px;
+        white-space: pre-wrap;
+    "></pre>
+
+    <script>
+        async function executeCode(event) {
+            if (event) {
+                event.preventDefault();
+            }
+
+            const resultBox = document.getElementById("result");
+            resultBox.innerText = "Button clicked. Sending request...";
+
+            const sessionId = document.getElementById("sessionId").value;
+            const code = document.getElementById("codeInput").value;
+
+            try {
+                const response = await fetch("http://127.0.0.1:8000/execute", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        session_id: sessionId,
+                        code: code
+                    })
+                });
+
+                resultBox.innerText = "Response received. Status: " + response.status;
+
+                const data = await response.json();
+
+                if (data.stdout) {
+                resultBox.innerText = data.stdout;
+                } else if (data.stderr) {
+                    resultBox.innerText = data.stderr;
+                } else {
+                    resultBox.innerText = JSON.stringify(data, null, 2);
+                }
+
+            } catch (error) {
+                resultBox.innerText = "Frontend error: " + error;
+                console.error(error);
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -7,3 +7,6 @@ class SessionCreate(BaseModel):
 class ExecuteRequest(BaseModel):
     session_id: str
     code: str
+
+class EchoRequest(BaseModel):
+    text: str
