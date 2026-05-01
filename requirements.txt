@@ -1,0 +1,6 @@
+fastapi[openapi,standard]>=0.115.12
+uvicorn[gunicorn]>=0.15.0
+docker
+requests
+pydantic>=1.9
+open-webui @ git+https://github.com/open-webui/open-webui.git

@@ -1,0 +1,38 @@
+[project]
+name = "sandbox-project"
+version = "0.1.0"
+description = "Sandbox environment for secure Python code execution"
+readme = "README.md"
+authors = [
+    { name = "Rajesh Pithani", email = "rajeshpithani777@gmail.com" }
+]
+requires-python = "=3.13.13"
+
+dependencies = [
+    "fastapi[openapi,standard]>=0.115.12",  # For FastAPI backend
+    "uvicorn[gunicorn]>=0.15.0",            # For serving FastAPI
+    "docker",                               # Docker integration for isolated execution
+    "requests",                             # For making HTTP requests (if needed)
+    "pydantic>=1.9",                        # For data validation (FastAPI uses Pydantic)
+    "open-webui @ git+https://github.com/open-webui/open-webui.git"  # Open WebUI as a dependency
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit",             # For Git hooks
+    "pytest",                 # For testing
+    "pytest-asyncio",         # For testing async code
+    "pytest-cov"              # For test coverage
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.coverage.run]
+omit = [
+    "**/test*.py"
+]
+
+[tool.isort]
+profile = "black"
