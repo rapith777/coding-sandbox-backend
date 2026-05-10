@@ -1,5 +1,23 @@
+# Python cache files
 __pycache__/
 *.pyc
+
+# Virtual environments
+.venv/
+.venv-1/
+venv/
+env/
+
+# Local database
 sandbox.db
+*.db
+
+# Generated session/execution data
 data/sessions/*
+!data/sessions/.gitkeep
+
+# Open WebUI local clone, if any
 open-webui/
+
+# VS Code local settings
+.vscode/settings.json

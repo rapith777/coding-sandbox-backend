@@ -1,28 +1,29 @@
 [project]
-name = "sandbox-project"
+name = "coding-sandbox-backend"
 version = "0.1.0"
-description = "Sandbox environment for secure Python code execution"
+description = "Secure Python code execution sandbox with FastAPI, Docker, SQLite, and LLM/Open WebUI integration"
 readme = "README.md"
 authors = [
     { name = "Rajesh Pithani", email = "rajeshpithani777@gmail.com" }
 ]
-requires-python = "=3.13.13"
+requires-python = ">=3.12,<3.13"
 
 dependencies = [
-    "fastapi[openapi,standard]>=0.115.12",  # For FastAPI backend
-    "uvicorn[gunicorn]>=0.15.0",            # For serving FastAPI
-    "docker",                               # Docker integration for isolated execution
-    "requests",                             # For making HTTP requests (if needed)
-    "pydantic>=1.9",                        # For data validation (FastAPI uses Pydantic)
-    "open-webui @ git+https://github.com/open-webui/open-webui.git"  # Open WebUI as a dependency
+    "fastapi[standard]>=0.135.1",
+    "uvicorn[standard]>=0.41.0",
+    "docker>=7.1.0",
+    "requests>=2.32.0",
+    "pydantic>=2.0.0",
+    "open-webui"
 ]
 
 [dependency-groups]
 dev = [
-    "pre-commit",             # For Git hooks
-    "pytest",                 # For testing
-    "pytest-asyncio",         # For testing async code
-    "pytest-cov"              # For test coverage
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "pre-commit",
+    "ruff"
 ]
 
 [build-system]
@@ -31,8 +32,13 @@ build-backend = "hatchling.build"
 
 [tool.coverage.run]
 omit = [
-    "**/test*.py"
+    "**/test*.py",
+    "**/__pycache__/*"
 ]
 
 [tool.isort]
 profile = "black"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
